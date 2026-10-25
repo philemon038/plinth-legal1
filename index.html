@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plinth Privacy and Terms</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+body { margin: 0; }
+:root { color-scheme: light; }
+/* Layout: one narrow reading column, a three-link jump bar, plain sections. Teal taken from the Plinth app. */
+:root {
+  --bg: #F4F8F7;
+  --surface: #FFFFFF;
+  --fg: #14211E;
+  --muted: #4F625D;
+  --line: #D6E1DE;
+  --accent: #166A60;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #E0F0ED;
+  --fill-bg: #FFF1C2;
+  --fill-fg: #5A4300;
+  --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1614;
+    --surface: #15201D;
+    --fg: #E3EDEA;
+    --muted: #9CB1AC;
+    --line: #25342F;
+    --accent: #4DB4A3;
+    --accent-ink: #08201C;
+    --accent-soft: #1B3732;
+    --fill-bg: #3A3010;
+    --fill-fg: #F2D98A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1614;
+  --surface: #15201D;
+  --fg: #E3EDEA;
+  --muted: #9CB1AC;
+  --line: #25342F;
+  --accent: #4DB4A3;
+  --accent-ink: #08201C;
+  --accent-soft: #1B3732;
+  --fill-bg: #3A3010;
+  --fill-fg: #F2D98A;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 720px; margin-inline: auto; display: flex; flex-direction: column; gap: 28px; }
+
+.brand { display: flex; align-items: center; gap: 12px; }
+.mark {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--accent); color: var(--accent-ink);
+  display: grid; place-items: center;
+  font-weight: 700; font-size: 24px; line-height: 1;
+}
+.brand-name { font-weight: 700; font-size: 20px; letter-spacing: 0.02em; }
+.brand-sub { color: var(--muted); font-size: 14px; }
+
+h1 { font-size: clamp(1.9rem, 5.5vw, 2.5rem); line-height: 1.15; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+.updated { font-family: var(--font-mono); font-size: 13px; color: var(--muted); margin: 0; }
+
+.jump { display: flex; flex-wrap: wrap; gap: 8px; }
+.jump a {
+  color: var(--accent); background: var(--accent-soft);
+  text-decoration: none; font-weight: 500; font-size: 15px;
+  padding: 10px 16px; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center;
+}
+.jump a:hover { text-decoration: underline; }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+section { scroll-margin-top: 16px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+section + section { border-top: 1px solid var(--line); padding-top: 28px; }
+h2 { font-size: 1.5rem; line-height: 1.25; margin: 0; text-wrap: balance; }
+h3 { font-size: 1.05rem; margin: 10px 0 0; }
+p { margin: 0; max-width: 65ch; }
+ul, ol { margin: 0; padding-left: 1.25rem; display: flex; flex-direction: column; gap: 6px; max-width: 65ch; }
+.muted { color: var(--muted); }
+
+.summary {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;
+}
+.summary h3 { margin: 0; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+.summary ul { max-width: none; }
+
+.steps { counter-reset: step; list-style: none; padding: 0; gap: 10px; }
+.steps li { counter-increment: step; display: flex; gap: 12px; align-items: baseline; }
+.steps li::before {
+  content: counter(step);
+  flex: none; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--accent); color: var(--accent-ink);
+  font-size: 13px; font-weight: 700; display: grid; place-items: center; transform: translateY(-1px);
+}
+
+.fill { background: var(--fill-bg); color: var(--fill-fg); padding: 1px 6px; border-radius: 4px; font-family: var(--font-mono); font-size: 0.9em; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 20px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header style="display:flex;flex-direction:column;gap:16px">
+    <div class="brand">
+      <div class="mark" aria-hidden="true">P</div>
+      <div>
+        <div class="brand-name">PLINTH</div>
+        <div class="brand-sub">Your study paddy</div>
+      </div>
+    </div>
+    <h1>Privacy policy and terms of use</h1>
+    <p class="updated">Last updated 24 October 2026</p>
+    <nav class="jump" aria-label="Jump to a section">
+      <a href="#privacy">Privacy policy</a>
+      <a href="#terms">Terms of use</a>
+      <a href="#delete-account">Delete your account</a>
+    </nav>
+  </header>
+
+  <!-- PRIVACY -->
+  <section id="privacy">
+    <h2>Privacy policy</h2>
+    <p>Plinth is a study app for Estate Management students. It is run by Joel Mathew (PHILEMON), the Plinth owner ("we", "us"). This page explains what we collect, why, who else handles it, and how you can control it.</p>
+
+    <div class="summary">
+      <h3>In short</h3>
+      <ul>
+        <li>We collect only what the app needs: your name, matric number, email and what you do in the app.</li>
+        <li>We do not sell your data and Plinth shows no ads.</li>
+        <li>Your password is never visible to us. It is stored in a protected form by our sign-in provider.</li>
+        <li>Other students can see your name on anything you post in Community.</li>
+        <li>You can delete your account yourself, inside the app, at any time.</li>
+      </ul>
+    </div>
+
+    <h3>What we collect</h3>
+    <ul>
+      <li><strong>Account details:</strong> full name, matric number, email address and password. Your matric number is checked against a list of verified students.</li>
+      <li><strong>Study activity:</strong> drill and quiz attempts, timetable entries you add, and academic planning data you enter, such as CGPA results and goals. Depending on the feature, this is kept in your account or only on your phone.</li>
+      <li><strong>Community content:</strong> discussions, replies, study group messages and reports you submit.</li>
+      <li><strong>Device details for notifications:</strong> a push notification token that lets us send announcements to your phone.</li>
+      <li><strong>Security records:</strong> sign-in attempt limits, which use scrambled identifiers, and a log of administrative actions.</li>
+    </ul>
+    <p>Some things stay only on your phone and are not uploaded: SIWES log entries, your project outline, downloaded course files, and your theme and unlock settings.</p>
+
+    <h3>Why we use it</h3>
+    <ul>
+      <li>To create your account, confirm you are a student of the department, and keep you signed in.</li>
+      <li>To show course materials, past questions, drills, your timetable and announcements.</li>
+      <li>To run Community and keep it safe, including reviewing reports.</li>
+      <li>To send verification codes and notifications you need.</li>
+      <li>To protect the app from misuse.</li>
+    </ul>
+
+    <h3>Who else handles your data</h3>
+    <p>We use a few services to run Plinth. They process data only to provide their service to us.</p>
+    <ul>
+      <li><strong>Supabase</strong> hosts our database, sign-in system and file storage.</li>
+      <li><strong>Resend</strong> sends verification and password reset emails.</li>
+      <li><strong>Google Firebase Cloud Messaging</strong> delivers push notifications, where enabled.</li>
+    </ul>
+    <p>We do not sell personal data. We may share information if the law requires it.</p>
+
+    <h3>Who can see what</h3>
+    <ul>
+      <li>The Plinth owner can see account details and moderate Community content.</li>
+      <li>Other signed-in students can see your name with the discussions, replies and group messages you post.</li>
+      <li>Your study activity, timetable and settings are private to you and the owner.</li>
+    </ul>
+
+    <h3>How long we keep it</h3>
+    <p>We keep your data while your account is open. When you delete your account, your profile, sign-in, posts, replies, messages and study records are removed. Records of administrative and moderation actions may remain, with your name and account link cleared. Copies in system backups can persist for a short period before they are overwritten.</p>
+
+    <h3>Your rights</h3>
+    <p>Under the Nigeria Data Protection Act 2023 you can ask to see, correct or delete your personal data, object to how it is used, and receive a copy of it. You can delete your account in the app, or write to us using the contact details below. If you are not satisfied with our response, you can complain to the Nigeria Data Protection Commission.</p>
+
+    <h3>Security</h3>
+    <p>Data travels over encrypted connections and access is limited by account and role. No system is perfectly secure, so please use a strong, unique password and keep your phone locked.</p>
+
+    <h3>Age</h3>
+    <p>Plinth is for university students. It is not meant for anyone under 16.</p>
+
+    <h3>Changes to this policy</h3>
+    <p>If we change this policy in a way that matters, we will update the date above and tell you in the app.</p>
+  </section>
+
+  <!-- TERMS -->
+  <section id="terms">
+    <h2>Terms of use</h2>
+    <p>By creating an account or using Plinth, you agree to these terms.</p>
+
+    <h3>Who can use Plinth</h3>
+    <p>Plinth is for students on the verified list. You must give accurate details, use only your own account, and keep your password private. You are responsible for what happens under your account.</p>
+
+    <h3>Study materials</h3>
+    <p>Course materials and past questions are provided for your own study. They belong to their original authors and lecturers. Do not copy, sell or share them outside Plinth.</p>
+
+    <h3>Estate Management tools</h3>
+    <p>The calculators, valuation tables, formulas and notes are for learning. Results are estimates, not a formal valuation, a mortgage offer, or financial or legal advice. Check your assumptions and follow your lecturers and professional rules before relying on any figure.</p>
+
+    <h3>Community rules</h3>
+    <ul>
+      <li>Be respectful. No harassment, hate, threats or sexual content.</li>
+      <li>Do not post private information about other people, or work that is not yours to share.</li>
+      <li>No cheating, impersonation, spam or advertising.</li>
+      <li>Use Report on anything that breaks these rules. The owner reviews reports and can remove content or suspend accounts.</li>
+    </ul>
+    <p>You keep ownership of what you post. You allow Plinth to display it to other students within the app.</p>
+
+    <h3>Suspension and ending your account</h3>
+    <p>We may suspend or remove accounts that break these terms or put others at risk. You can close your own account at any time, as described below.</p>
+
+    <h3>Availability</h3>
+    <p>We work to keep Plinth running, but we cannot promise it will always be available or free of errors. Features and content may change.</p>
+
+    <h3>Limits on our responsibility</h3>
+    <p>Plinth is provided as it is. To the extent the law allows, we are not responsible for losses that come from relying on the app's content or from it being unavailable.</p>
+
+    <h3>Changes and governing law</h3>
+    <p>We may update these terms. If you keep using Plinth after the date changes, you accept the new version. These terms are governed by the laws of the Federal Republic of Nigeria.</p>
+  </section>
+
+  <!-- DELETE -->
+  <section id="delete-account">
+    <h2>Delete your account</h2>
+    <p>You can delete your Plinth account and data yourself. This cannot be undone.</p>
+
+    <h3>In the app</h3>
+    <ol class="steps">
+      <li><span>Sign in and open the menu in the top left.</span></li>
+      <li><span>Tap <strong>Delete account</strong>.</span></li>
+      <li><span>Type <strong>DELETE</strong> and enter your password.</span></li>
+      <li><span>Tap <strong>Delete my account</strong>.</span></li>
+    </ol>
+
+    <h3>What is deleted</h3>
+    <ul>
+      <li>Your profile, sign-in, matric number link and email on your account.</li>
+      <li>Your quiz attempts, timetable entries, notification token and reports you filed.</li>
+      <li>Your discussions, replies and study group messages. Study groups you created stay for other members, without a named creator.</li>
+      <li>Anything stored on your phone for Plinth, such as SIWES entries and downloaded files.</li>
+    </ul>
+    <p class="muted">Records of administrative actions may remain with your name cleared. After deletion you can register again later if your matric number is still on the verified list.</p>
+
+    <h3>If you cannot open the app</h3>
+    <p>Email us from your registered address with your full name and matric number, and ask us to delete your account. We will confirm your identity and complete the deletion within 30 days.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Plinth owner: <strong>Joel Mathew (PHILEMON)</strong></p>
+    <p>Questions about privacy, these terms or deleting your data: <strong>joelmathew038@gmail.com</strong></p>
+  </section>
+
+  <footer>Plinth · Privacy policy and terms of use · Last updated 24 October 2026</footer>
+</main>
+</body>
+</html>
